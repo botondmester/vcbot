@@ -3,7 +3,7 @@
 #include "vcbparser.h"
 #include "fpng.h"
 
-const std::string    BOT_TOKEN    = "MTEzMDYzOTkxNDUxODcyNDY1OQ.GEwjBj.V9wK7ilTmUGr3gLL9C_0ea_-z5-PydwEREpPOc";
+const std::string    BOT_TOKEN    = std::getenv("token");
 
 dpp::message generateImage(const std::string &bp) {
     const auto start = std::chrono::steady_clock::now();
