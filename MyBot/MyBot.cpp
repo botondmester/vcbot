@@ -3,7 +3,7 @@
 #include "vcbparser.h"
 #include "fpng.h"
 
-const std::string    BOT_TOKEN    = std::getenv("token");
+std::string BOT_TOKEN; // place in a file called "token.txt", next to this file
 
 dpp::message generateImage(const std::string &bp) {
     const auto start = std::chrono::steady_clock::now();
@@ -38,7 +38,15 @@ int main()
     VcbParser::test();
 
 #else
-
+    std::ifstream file;
+    std::stringstream buffer;
+    file.open("token.txt", std::ios::in | std::ios::binary);
+    if (file.is_open()) {
+        buffer << file.rdbuf();
+    }
+    else return 0;
+    file.close();
+    BOT_TOKEN = buffer.str();
     /* Create bot cluster */
     dpp::cluster bot(BOT_TOKEN);
 
