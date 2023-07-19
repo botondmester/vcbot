@@ -21,6 +21,12 @@
     <ClCompile Include="MyBot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="vcbparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fpng.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\include\dpp-10.0\dpp\auditlog.h">
@@ -147,6 +153,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyBot.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vcbparser.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fpng.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base64.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
