@@ -11,9 +11,8 @@
 #include <boost/iostreams/filter/zstd.hpp>
 #include <openssl/sha.h>
 #include <chrono>
-#include <zstd.h>
-#include "fpng.h"
 #include "base64.h"
+#include "lodepng.h"
 
 std::string decompress(const std::string& data)
 {
@@ -31,7 +30,7 @@ std::string decompress(const std::string& data)
 }
 
 uint64_t nbyteToUint(const std::string &s, const uint8_t len, const int offset) {
-	assert(len < 1 || len>8);
+	assert(len > 0 || len<9);
 	uint64_t out = 0;
 	for (int i = 0; i < len; i++) {
 		out |= ((uint64_t)(unsigned char)s[len - i - 1 + offset] << (i * 8)); // must cast signed char to unsigned char first
@@ -98,7 +97,6 @@ VcbCircuit VcbParser::parseBP(const std::string &input)
 			if (out.logic != -1) {
 				throw std::invalid_argument("Duplicate Logic layer!");
 			}
-			block.buffer.resize(block.uncompressedSize/4, 0);
 			std::string tempBuf = "";
 
 			try
@@ -113,7 +111,7 @@ VcbCircuit VcbParser::parseBP(const std::string &input)
 			if (tempBuf.size() != block.uncompressedSize) {
 				throw std::invalid_argument("UncompressedSize is not correct!");
 			}
-			tempBuf.copy((char*)block.buffer.data(), tempBuf.size(), 0); // copy the decompressed data to the buffer
+			block.buffer = std::vector<unsigned char>(tempBuf.begin(), tempBuf.end());
 			out.logic = out.blocks.size();
 		}
 		out.blocks.push_back(block);
@@ -176,7 +174,7 @@ void VcbParser::test()
 
 	VcbCircuit circ = parseBP(long_bp);
 	std::vector<unsigned char> png;
-	fpng::fpng_encode_image_to_memory(circ.blocks[circ.logic].buffer.data(), circ.width, circ.height, 4, png);
+	lodepng::encode(png, circ.blocks[circ.logic].buffer, circ.width, circ.height);
 
 	const auto end = std::chrono::steady_clock::now();
 	const std::chrono::duration<double, std::milli> time = end - start;

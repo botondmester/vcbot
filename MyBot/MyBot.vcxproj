@@ -351,7 +351,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="fpng.cpp" />
+    <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="MyBot.cpp" />
     <ClCompile Include="vcbparser.cpp" />
   </ItemGroup>
@@ -398,7 +398,7 @@
     <ClInclude Include="dependencies\include\dpp-10.0\dpp\webhook.h" />
     <ClInclude Include="dependencies\include\dpp-10.0\dpp\win32_safe_warnings.h" />
     <ClInclude Include="dependencies\include\dpp-10.0\dpp\wsclient.h" />
-    <ClInclude Include="fpng.h" />
+    <ClInclude Include="lodepng.h" />
     <ClInclude Include="MyBot.h" />
     <ClInclude Include="vcbparser.h" />
   </ItemGroup>

@@ -24,7 +24,7 @@
     <ClCompile Include="vcbparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fpng.cpp">
+    <ClCompile Include="lodepng.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,10 +158,10 @@
     <ClInclude Include="vcbparser.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="fpng.h">
+    <ClInclude Include="base64.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="base64.h">
+    <ClInclude Include="lodepng.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

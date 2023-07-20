@@ -1,7 +1,7 @@
 #include "MyBot.h"
 #include <dpp/dpp.h>
 #include "vcbparser.h"
-#include "fpng.h"
+#include "lodepng.h"
 
 std::string BOT_TOKEN; // place in a file called "token.txt", next to this file
 
@@ -14,7 +14,7 @@ dpp::message generateImage(const std::string &bp) {
 
     std::vector<unsigned char> png;
 
-    fpng::fpng_encode_image_to_memory(circ.blocks[circ.logic].buffer.data(), circ.width, circ.height, 4, png, 1);
+    lodepng::encode(png, circ.blocks[circ.logic].buffer, circ.width, circ.height);
 
     dpp::message msg("");
     std::string cont(png.begin(), png.end());
@@ -32,7 +32,6 @@ dpp::message generateImage(const std::string &bp) {
 
 int main()
 {
-    fpng::fpng_init();
 #ifdef TEST_PARSER
 
     VcbParser::test();

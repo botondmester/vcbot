@@ -8,7 +8,7 @@ struct VcbBlock
 	uint32_t blockSize{};
 	uint32_t layerId{};
 	uint32_t uncompressedSize{};
-	std::vector<uint32_t> buffer;
+	std::vector<unsigned char> buffer;
 };
 
 struct VcbCircuit
