@@ -80,14 +80,14 @@ VcbCircuit VcbParser::parseBP(const std::string &input)
 		VcbBlock block;
 		block.blockSize = nbyteToUint(content, 4, j);
 		if (j + block.blockSize > content.size()) {
-			throw std::invalid_argument("BlockSize is out of bounds");
+			throw std::invalid_argument("BlockSize is out of bounds!");
 		}
 		if (block.blockSize < 12) {
-			throw std::invalid_argument("BlockSize is too small");
+			throw std::invalid_argument("BlockSize is too small!");
 		}
 		block.layerId = nbyteToUint(content, 4, j+4);
 		block.uncompressedSize = nbyteToUint(content, 4, j+8);
-		if (block.uncompressedSize > 2048*2048*4*4) { // check if it is larger than the default 2k*2k board (no trolling lol)
+		if (block.uncompressedSize > 2048*2048*4) { // check if it is larger than the default 2k*2k board (no trolling lol)
 			throw std::invalid_argument("Blueprint is larger than the board!");
 		}
 		if (block.uncompressedSize != out.width * out.height * 4) {

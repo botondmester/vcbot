@@ -69,8 +69,9 @@ int main()
                     event.reply(generateImage(bp));
                 }
                 catch (std::invalid_argument& e) {
-                    std::cout << "[ERROR]: " << e.what() << '\n';
-                    event.reply("Failed to generate image!");
+                    std::string err = e.what();
+                    std::cout << "[ERROR]: " << err << '\n';
+                    event.reply("Failed to generate image!\nError: " + err);
                 }
             }
             else if (subcommand.name == "file") {
@@ -85,8 +86,9 @@ int main()
                         event.reply(generateImage(bp));
                     }
                     catch (std::invalid_argument& e) {
-                        std::cout << "[ERROR]: " << e.what() << '\n';
-                        event.reply("Failed to generate image!");
+                        std::string err = e.what();
+                        std::cout << "[ERROR]: " << err << '\n';
+                        event.reply("Failed to generate image!\nError: " + err);
                     }
                 });
             }
